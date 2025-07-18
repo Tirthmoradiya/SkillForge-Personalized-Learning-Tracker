@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary-50: #EFF6FF;
+    --primary-100: #DBEAFE;
+    --primary-200: #BFDBFE;
+    --primary-300: #93C5FD;
+    --primary-400: #60A5FA;
+    --primary-500: #3B82F6;
+    --primary-600: #2563EB;
+    --primary-700: #1D4ED8;
+    --primary-800: #1E40AF;
+    --primary-900: #1E3A8A;
+  }
+
+  .dark {
+    --primary-50: #172554;
+    --primary-100: #1E3A8A;
+    --primary-200: #1E40AF;
+    --primary-300: #1D4ED8;
+    --primary-400: #2563EB;
+    --primary-500: #3B82F6;
+    --primary-600: #60A5FA;
+    --primary-700: #93C5FD;
+    --primary-800: #BFDBFE;
+    --primary-900: #DBEAFE;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply bg-primary-600 hover:bg-primary-700 text-white font-semibold py-2 px-4 rounded-md
+           transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2
+           dark:focus:ring-offset-gray-900 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-gray-100
+           font-semibold py-2 px-4 rounded-md transition duration-200 ease-in-out focus:outline-none
+           focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .input-field {
+    @apply block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm
+           focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:text-gray-100
+           dark:placeholder-gray-400 transition-colors duration-200;
+  }
+
+  .link {
+    @apply text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300
+           transition-colors duration-200;
+  }
+
+  .heading-1 {
+    @apply text-3xl font-bold text-gray-900 dark:text-gray-100;
+  }
+
+  .heading-2 {
+    @apply text-2xl font-semibold text-gray-900 dark:text-gray-100;
+  }
+
+  .heading-3 {
+    @apply text-xl font-semibold text-gray-900 dark:text-gray-100;
+  }
+
+  .text-body {
+    @apply text-gray-700 dark:text-gray-300;
+  }
+
+  .text-small {
+    @apply text-sm text-gray-600 dark:text-gray-400;
+  }
+}

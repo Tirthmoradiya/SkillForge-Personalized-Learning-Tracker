@@ -1,0 +1,2 @@
+APIs let applications talk to each other.
+REST is a common pattern for designing APIs. 

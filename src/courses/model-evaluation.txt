@@ -1,0 +1,2 @@
+Model evaluation checks how well your model works.
+Use metrics like accuracy and confusion matrix. 

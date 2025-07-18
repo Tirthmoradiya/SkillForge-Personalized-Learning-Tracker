@@ -1,0 +1,2 @@
+JavaScript makes web pages interactive.
+Understand variables, functions, and events. 

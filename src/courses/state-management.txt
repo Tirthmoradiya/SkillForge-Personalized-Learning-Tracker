@@ -1,0 +1,2 @@
+State management helps you track and update data in your app.
+Explore useState and useContext in React. 

@@ -1,0 +1,2 @@
+Deep learning uses many layers of neural networks.
+It powers modern AI like speech and image recognition. 

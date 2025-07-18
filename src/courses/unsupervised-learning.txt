@@ -1,0 +1,2 @@
+Unsupervised learning finds patterns in unlabeled data.
+Examples: clustering and dimensionality reduction. 
