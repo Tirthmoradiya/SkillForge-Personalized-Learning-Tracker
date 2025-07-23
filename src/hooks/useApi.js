@@ -1,12 +1,17 @@
 import { useState, useCallback } from 'react';
 import { useAuth } from '../context/AuthContext';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 const useApi = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const { logout } = useAuth();
 
   const fetchApi = useCallback(async (url, options = {}) => {
+    if (url.startsWith('/api')) {
+      url = `${API_BASE_URL}${url}`;
+    }
     try {
       setLoading(true);
       setError(null);

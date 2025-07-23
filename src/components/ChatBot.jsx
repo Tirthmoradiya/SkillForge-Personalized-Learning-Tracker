@@ -5,8 +5,10 @@ import { Transition } from '@headlessui/react';
 // Replace the mock Gemini API call with a real fetch (or keep a better mock)
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=YOUR_GEMINI_API_KEY';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 async function fetchGeminiResponse(prompt) {
-  const response = await fetch('/api/test/gemini-test', {
+  const response = await fetch(`${API_BASE_URL}/api/test/gemini-test`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ prompt })

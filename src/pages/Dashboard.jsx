@@ -19,6 +19,7 @@ export default function Dashboard() {
   const [courseProgress, setCourseProgress] = useState([]);
   const location = useLocation();
   const navigate = useNavigate();
+  const API_BASE_URL = import.meta.env.VITE_API_URL;
 
   // Helpers for localStorage keys
   const getKey = (type) => user ? `${type}_${user._id || user.id || user.username}` : null;
@@ -52,13 +53,13 @@ export default function Dashboard() {
     // 2. Fetch from backend and merge
     Promise.all([
       // Fetch user's assigned learning paths with populated courses
-      fetch('/api/user/learning-paths', { 
+      fetch(`${API_BASE_URL}/api/user/learning-paths`, { 
         headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } 
       }).then(res => res.json()),
-      fetch('/api/user/recent-activity', { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }).then(res => res.json()),
-      fetch('/api/user/account/export', { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }).then(res => res.json()),
-      fetch('/api/user/topics/recent-viewed', { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }).then(res => res.json()),
-      fetch('/api/user/progress/courses', { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }).then(res => res.json()),
+      fetch(`${API_BASE_URL}/api/user/recent-activity`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }).then(res => res.json()),
+      fetch(`${API_BASE_URL}/api/user/account/export`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }).then(res => res.json()),
+      fetch(`${API_BASE_URL}/api/user/topics/recent-viewed`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }).then(res => res.json()),
+      fetch(`${API_BASE_URL}/api/user/progress/courses`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }).then(res => res.json()),
     ])
       .then(([paths, recent, userData, recentViewed, courseProg]) => {
         setLearningPaths(Array.isArray(paths) ? paths : local.learningPaths);
@@ -99,7 +100,7 @@ export default function Dashboard() {
   const refreshLearningPaths = async () => {
     if (!user) return;
     try {
-      const res = await fetch('/api/user/learning-paths', { 
+      const res = await fetch(`${API_BASE_URL}/api/user/learning-paths`, { 
         headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } 
       });
       const paths = await res.json();
@@ -138,7 +139,7 @@ export default function Dashboard() {
     let isMounted = true;
     let intervalId;
     const fetchProgress = () => {
-      fetch('/api/user/progress/learning-paths', { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
+      fetch(`${API_BASE_URL}/api/user/progress/learning-paths`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
         .then(res => res.json())
         .then(progressArr => {
           if (!isMounted) return;

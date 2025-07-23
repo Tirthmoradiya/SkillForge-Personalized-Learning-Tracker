@@ -35,6 +35,7 @@ export default function Profile() {
 
   // Helpers for localStorage keys
   const getKey = (type) => user ? `${type}_${user._id || user.id || user.username}` : null;
+  const API_BASE_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     if (!user) return;
@@ -60,7 +61,7 @@ export default function Profile() {
     setViewedTopics(local.viewedTopics);
     setNotifications(local.notifications);
     // 2. Fetch from backend and merge
-    fetch('/api/user/profile', {
+    fetch(`${API_BASE_URL}/api/user/profile`, {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
     })
       .then(res => res.json())
@@ -76,7 +77,7 @@ export default function Profile() {
         localStorage.setItem(keys.profile, JSON.stringify(data));
         localStorage.setItem(keys.viewedTopics, JSON.stringify(data.viewedTopics || []));
       });
-    fetch('/api/user/notifications', {
+    fetch(`${API_BASE_URL}/api/user/notifications`, {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
     })
       .then(res => res.json())
@@ -86,11 +87,11 @@ export default function Profile() {
         else setNotifications([]);
         localStorage.setItem(keys.notifications, JSON.stringify(data));
       });
-    fetch('/api/user/progress/completed-topics', { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
+    fetch(`${API_BASE_URL}/api/user/progress/completed-topics`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
       .then(res => res.json()).then(data => { setCompletedTopics(data); localStorage.setItem(keys.completedTopics, JSON.stringify(data)); });
-    fetch('/api/user/progress/opened-topics', { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
+    fetch(`${API_BASE_URL}/api/user/progress/opened-topics`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
       .then(res => res.json()).then(data => { setOpenedTopics(data); localStorage.setItem(keys.openedTopics, JSON.stringify(data)); });
-    fetch('/api/user/progress/learning-paths', { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
+    fetch(`${API_BASE_URL}/api/user/progress/learning-paths`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
       .then(res => res.json()).then(data => { setLearningPaths(data); localStorage.setItem(keys.learningPaths, JSON.stringify(data)); });
   }, [user]);
 
@@ -115,7 +116,7 @@ export default function Profile() {
   const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
   const handleSave = async () => {
     setMessage('');
-    const res = await fetch('/api/user/profile', {
+    const res = await fetch(`${API_BASE_URL}/api/user/profile`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -140,7 +141,7 @@ export default function Profile() {
   const handlePwSubmit = async e => {
     e.preventDefault();
     setPwMsg('');
-    const res = await fetch('/api/user/profile/password', {
+    const res = await fetch(`${API_BASE_URL}/api/user/profile/password`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -215,7 +216,7 @@ export default function Profile() {
   };
   const unreadCount = (Array.isArray(notifications) ? notifications : []).filter(n => !(n.readBy || []).includes(user?._id)).length;
   const markAsRead = async id => {
-    await fetch(`/api/user/notifications/${id}/read`, {
+    await fetch(`${API_BASE_URL}/api/user/notifications/${id}/read`, {
       method: 'POST',
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
     });

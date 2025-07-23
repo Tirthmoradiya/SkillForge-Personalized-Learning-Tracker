@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': 'https://skillforge-personalized-learning-tracker.onrender.com',
+      '/api': 'http://localhost:5000',
     },
   },
 })
