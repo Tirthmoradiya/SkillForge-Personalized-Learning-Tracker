@@ -19,7 +19,10 @@ app.set('mongoose', mongoose);
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: process.env.FRONTEND_ORIGIN?.split(',') || '*',
+  credentials: true
+}));
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
