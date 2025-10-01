@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 import { useAuth } from '../context/AuthContext';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL;
+console.log('API Base URL:', API_BASE_URL); // Temporary debug log
 
 const useApi = () => {
   const [loading, setLoading] = useState(false);
