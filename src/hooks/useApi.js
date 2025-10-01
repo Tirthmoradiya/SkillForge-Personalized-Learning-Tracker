@@ -1,8 +1,7 @@
 import { useState, useCallback } from 'react';
 import { useAuth } from '../context/AuthContext';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL;
-console.log('API Base URL:', API_BASE_URL); // Temporary debug log
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://skillforge-personalized-learning-tracker.onrender.com';
 
 const useApi = () => {
   const [loading, setLoading] = useState(false);
@@ -10,8 +9,10 @@ const useApi = () => {
   const { logout } = useAuth();
 
   const fetchApi = useCallback(async (url, options = {}) => {
+    // Ensure we have a valid base URL and properly construct the full URL
     if (url.startsWith('/api')) {
-      url = `${API_BASE_URL}${url}`;
+      // Remove any potential double slashes except for http(s)://
+      url = `${API_BASE_URL.replace(/\/+$/, '')}/${url.replace(/^\/+/, '')}`;
     }
     try {
       setLoading(true);
