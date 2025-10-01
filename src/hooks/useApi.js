@@ -1,7 +1,8 @@
 import { useState, useCallback } from 'react';
 import { useAuth } from '../context/AuthContext';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://skillforge-personalized-learning-tracker.onrender.com';
+// Ensure we have a valid API base URL, remove any trailing slashes
+const API_BASE_URL = (import.meta.env.VITE_API_URL || 'https://skillforge-personalized-learning-tracker.onrender.com').replace(/\/+$/, '');
 
 const useApi = () => {
   const [loading, setLoading] = useState(false);
@@ -11,8 +12,10 @@ const useApi = () => {
   const fetchApi = useCallback(async (url, options = {}) => {
     // Ensure we have a valid base URL and properly construct the full URL
     if (url.startsWith('/api')) {
-      // Remove any potential double slashes except for http(s)://
-      url = `${API_BASE_URL.replace(/\/+$/, '')}/${url.replace(/^\/+/, '')}`;
+      // Clean up the URL path and ensure no undefined in the URL
+      const cleanPath = url.replace(/^\/+/, '');
+      url = `${API_BASE_URL}/${cleanPath}`;
+      console.log('Making API request to:', url); // Debug log
     }
     try {
       setLoading(true);
