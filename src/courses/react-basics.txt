@@ -1,2 +1,0 @@
-React is a library for building user interfaces.
-Learn about components, props, and state. 

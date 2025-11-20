@@ -1,2 +1,0 @@
-Data preprocessing cleans and prepares data for ML.
-Handle missing values and normalize data. 

@@ -1,2 +1,0 @@
-Neural networks are inspired by the human brain.
-They are used for complex tasks like image recognition. 

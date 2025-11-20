@@ -1,2 +1,0 @@
-Supervised learning uses labeled data to train models.
-Examples: classification and regression. 

@@ -1,2 +1,0 @@
-React Router enables navigation between pages.
-Learn about routes, links, and navigation. 

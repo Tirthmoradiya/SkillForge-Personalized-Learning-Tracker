@@ -1,2 +1,0 @@
-Python is the main language for machine learning.
-Learn about libraries like NumPy and pandas. 

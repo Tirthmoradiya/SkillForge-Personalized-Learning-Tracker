@@ -1,2 +1,0 @@
-Node.js lets you run JavaScript on the server.
-Express is a framework for building APIs. 
