@@ -5,6 +5,7 @@ import { useTheme } from '../context/ThemeContext';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { API_BASE_URL } from '../config/api';
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -19,7 +20,6 @@ export default function Dashboard() {
   const [courseProgress, setCourseProgress] = useState([]);
   const location = useLocation();
   const navigate = useNavigate();
-  const API_BASE_URL = import.meta.env.VITE_API_URL;
 
   // Helpers for localStorage keys
   const getKey = (type) => user ? `${type}_${user._id || user.id || user.username}` : null;

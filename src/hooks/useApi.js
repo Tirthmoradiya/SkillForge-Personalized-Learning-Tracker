@@ -1,8 +1,7 @@
 import { useState, useCallback } from 'react';
 import { useAuth } from '../context/AuthContext';
 
-// Ensure we have a valid API base URL, remove any trailing slashes
-const API_BASE_URL = (import.meta.env.VITE_API_URL || 'https://skillforge-personalized-learning-tracker.onrender.com').replace(/\/+$/, '');
+import { API_BASE_URL } from '../config/api';
 
 const useApi = () => {
   const [loading, setLoading] = useState(false);

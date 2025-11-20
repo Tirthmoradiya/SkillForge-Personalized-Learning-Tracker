@@ -13,6 +13,8 @@ import {
 import { BellIcon, CheckCircleIcon, ExclamationCircleIcon, StarIcon, ClockIcon, EyeIcon, EyeSlashIcon, PencilIcon, CalendarIcon, UserIcon, EnvelopeIcon, InformationCircleIcon, SparklesIcon, LockClosedIcon, ChartBarIcon } from '@heroicons/react/24/outline';
 import UserAvatar from '../components/UserAvatar';
 import { useTheme } from '../context/ThemeContext';
+import { API_BASE_URL } from '../config/api';
+
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 export default function Profile() {
@@ -35,7 +37,6 @@ export default function Profile() {
 
   // Helpers for localStorage keys
   const getKey = (type) => user ? `${type}_${user._id || user.id || user.username}` : null;
-  const API_BASE_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     if (!user) return;
@@ -228,7 +229,7 @@ export default function Profile() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[linear-gradient(45deg,_#f3f4f6_25%,_transparent_25%,_transparent_75%,_#f3f4f6_75%,_#f3f4f6),linear-gradient(45deg,_#f3f4f6_25%,_transparent_25%,_transparent_75%,_#f3f4f6_75%,_#f3f4f6)] dark:bg-[linear-gradient(45deg,_#1f2937_25%,_transparent_25%,_transparent_75%,_#1f2937_75%,_#1f2937),linear-gradient(45deg,_#1f2937_25%,_transparent_25%,_transparent_75%,_#1f2937_75%,_#1f2937)] bg-[length:32px_32px] [background-position:0_0,_16px_16px] opacity-[0.1] pointer-events-none select-none"></div>
+      <div className="absolute inset-0 bg-[linear-gradient(45deg,_#f3f4f6_25%,_transparent_25%,_transparent_75%,_#f3f4f6_75%,_#f3f4f6),linear-gradient(45deg,_#f3f4f6_25%,_transparent_25%,_transparent_75%,_#f3f4f6_75%,_#f3f4f6)] dark:bg-[linear-gradient(45deg,_#1f2937_25%,_transparent_25%,_transparent_75%,_#1f2937_75%,_#1f2937)] bg-[length:32px_32px] [background-position:0_0,_16px_16px] opacity-[0.1] pointer-events-none select-none"></div>
       <div className="max-w-2xl w-full relative mx-auto">
       {/* Header with Avatar and Gradient */}
       <div className="relative rounded-3xl overflow-hidden shadow-xl mb-8 bg-gradient-to-br from-blue-500/80 via-blue-400/60 to-green-400/60 p-0">
@@ -387,4 +388,4 @@ export default function Profile() {
       </div>
     </div>
   );
-} 
+}
